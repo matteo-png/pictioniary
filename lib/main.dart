@@ -23,7 +23,19 @@ class MyApp extends StatelessWidget {
         '/login': (context) => Identification(),
         '/home': (context) => const Home(),
         '/qrcode' : (context) => const Scanner(),
-        '/inscription': (context) => Inscription()
+        '/inscription': (context) => Inscription(),
+        '/challenge': (context) {
+          final gameId = ModalRoute.of(context)!.settings.arguments as String;
+          return ChallengesPage(gameId: gameId);
+        },
+        '/loading': (context) {
+          final gameId = ModalRoute.of(context)!.settings.arguments as String;
+          return Loading(gameId: gameId);
+        },
+        '/drawing' : (context){
+          final gameId = ModalRoute.of(context)!.settings.arguments as String;
+          return Drawerform(gameId: gameId);
+        },
       },
       title: 'PICTION.IA.RY',
       theme: ThemeData(

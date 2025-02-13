@@ -36,14 +36,35 @@ class _CompositionState extends State<Composition> {
     gameData = await fetchGameSession(widget.gameId);
 
     if (gameData != null) {
+      // Récupération des joueurs
       bluePlayer1 = await _getPlayerName(gameData!['blue_player_1']);
       bluePlayer2 = await _getPlayerName(gameData!['blue_player_2']);
       redPlayer1 = await _getPlayerName(gameData!['red_player_1']);
       redPlayer2 = await _getPlayerName(gameData!['red_player_2']);
 
+      // Vérification du statut de la partie
+      final currentStatus = await fetchGameStatus(widget.gameId);
+
+      // Si le statut est "challenge", passer à la page suivante
+      if (currentStatus == 'challenge') {
+        _navigateToChallengePage();
+        return;
+      }
+
+      // Vérification des joueurs : si tous les joueurs sont présents, lancer la partie
+      final allPlayersReady = bluePlayer1 != null &&
+          bluePlayer2 != null &&
+          redPlayer1 != null &&
+          redPlayer2 != null;
+
+      if (allPlayersReady && currentStatus == 'lobby') {
+        await _startGame();
+      }
+
       setState(() {}); // Rafraîchit l'interface après avoir récupéré les données
     }
   }
+
 
   Future<String?> _getPlayerName(int? playerId) async {
     if (playerId != null) {
@@ -64,6 +85,21 @@ class _CompositionState extends State<Composition> {
       );
     }
   }
+
+  Future<void> _startGame() async {
+    final success = await startGameSession(widget.gameId); // Appel à votre méthode API pour démarrer la partie
+    if (!success) {
+      print('Erreur lors du lancement de la partie');
+    }
+  }
+
+  void _navigateToChallengePage() {
+    final navigator = Navigator.of(context);
+
+    // Redirection vers la page de challenge
+    navigator.pushReplacementNamed('/challenge', arguments: widget.gameId);
+  }
+
 
   @override
   void dispose() {
