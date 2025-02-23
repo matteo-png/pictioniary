@@ -8,18 +8,18 @@ Pour les écrans de connexion, d'accueil et de rejoindre et créer une partie av
 
 Sinon pour le reste des fonctionnalités que j'ai réalisé seule, on a :
 
--Lancer la partie lorsque tout les joueurs sont dans la partie
--Créer et envoyer trois challenges pour chaque personne
--Passer en mode drawing et switch d'écran lorsque tout le monde a envoyé ces challenges
--Afficher un challenge et pouvoir générer une image ia
+- Lancer la partie lorsque tout les joueurs sont dans la partie
+- Créer et envoyer trois challenges pour chaque personne
+- Passer en mode drawing et switch d'écran lorsque tout le monde a envoyé ces challenges
+- Afficher un challenge et pouvoir générer une image ia
 
 Les fonctionnalités qu'ils manquent sont :
 
--Envoyer les images générées au devineur
--Les devineur doivent deviner l'image
--Gerer les points d'équipes
--Gerer le timer
--Fin de partie
+- Envoyer les images générées au devineur
+- Les devineur doivent deviner l'image
+- Gerer les points d'équipes
+- Gerer le timer
+- Fin de partie
 
 ## Getting Started
 
